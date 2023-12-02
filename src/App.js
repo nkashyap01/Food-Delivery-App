@@ -8,7 +8,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload. Hello Hii this is new
-          changes nothing changed
+          changes nothing changed. Again, today nothing is updated.
         </p>
         <a
           className="App-link"
