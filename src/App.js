@@ -9,8 +9,8 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload. Hello Hii this is new
           changes nothing changed. Again, today nothing is updated. Exam Day. I
-          am preparing for my next exam i.e. Management.
-          Tomorrow is my last exam.
+          am preparing for my next exam i.e. Management. Tomorrow is my last
+          exam.
         </p>
         <a
           className="App-link"
