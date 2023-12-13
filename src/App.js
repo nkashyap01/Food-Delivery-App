@@ -32,5 +32,7 @@ import react from "React";
 import ReactDom from "React-dom";
 const heading = React.createElement("h1", { id: "heading" }, "namste react");
 console.log(heading);
+const jsxHeading = <h1 id="heading"> Namaste React using jsx</h1>;
+console.log(jsxHeading);
 const root = ReactDom.createRoot(document.getElementById("root"));
 root.render(heading);
