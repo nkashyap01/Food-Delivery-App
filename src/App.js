@@ -28,11 +28,15 @@
 
 // export default App;
 
-import react from "React";
-import ReactDom from "React-dom";
-const heading = React.createElement("h1", { id: "heading" }, "namste react");
-console.log(heading);
-const jsxHeading = <h1 id="heading"> Namaste React using jsx</h1>;
-console.log(jsxHeading);
+import React from "react";
+import ReactDom from "react-dom";
+// const heading = React.createElement("h1", { id: "heading" }, "namste react");
+// console.log(heading);
+const HeadingComponent = () => {
+  return <h1 className="heading"> Namaste React</h1>;
+};
+
 const root = ReactDom.createRoot(document.getElementById("root"));
-root.render(heading);
+root.render(<HeadingComponent />);
+
+export default HeadingComponent;
