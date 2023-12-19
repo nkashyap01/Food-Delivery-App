@@ -37,7 +37,6 @@ const Header = () => {
     <div className="header">
       <div className="logo-container">
         <img className="logo" src="C:\food_delivery\src\images\food-logo.png" />
-    
       </div>
       <div className="nav-item">
         <ul>
@@ -45,10 +44,7 @@ const Header = () => {
           <li> About us</li>
           <li> Contact</li>
           <li> Cart</li>
-          <li>Cart </li>
-
-          
-        
+          <li> Cart </li>
         </ul>
       </div>
     </div>
