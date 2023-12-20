@@ -36,7 +36,10 @@ const Header = () => {
   return (
     <div className="header">
       <div className="logo-container">
-        <img className="logo" src="C:\food_delivery\src\images\food-logo.png" />
+        <img
+          className="logo"
+          src="https://png.pngtree.com/png-vector/20220708/ourmid/pngtree-fast-food-logo-png-image_5763171.png"
+        />
       </div>
       <div className="nav-item">
         <ul>
@@ -44,9 +47,21 @@ const Header = () => {
           <li> About us</li>
           <li> Contact</li>
           <li> Cart</li>
-          <li> Cart </li>
         </ul>
       </div>
+    </div>
+  );
+};
+const RestaurantCard = () => {
+  return (
+    <div className="res-card">
+      <img
+        className="res-img"
+        alt="pic"
+        src="https://www.indianveggiedelight.com/wp-content/uploads/2020/04/veg_biryani_1.jpg"
+      />
+      <h3> RFC Food</h3>
+      <h4> Biryani, North Indian, Asian</h4>
     </div>
   );
 };
@@ -54,7 +69,9 @@ const Body = () => {
   return (
     <div className="body">
       <div className="search"> Search</div>
-      <div className="res-container"></div>
+      <div className="res-container">
+        <RestaurantCard />
+      </div>
     </div>
   );
 };
