@@ -63,6 +63,7 @@ const RestaurantCard = () => {
       <h3> RFC Food</h3>
       <h4> Biryani, North Indian, Asian</h4>
       <h4>4.3 stars </h4>
+      <h4> 4.3 stars </h4>
     </div>
   );
 };
