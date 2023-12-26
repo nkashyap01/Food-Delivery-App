@@ -63,7 +63,7 @@ const RestaurantCard = () => {
       <h3> RFC Food</h3>
       <h4> Biryani, North Indian, Asian</h4>
       <h4>4.3 stars </h4>
-      <h4> 4.3 stars </h4>
+      <h4> 38 Mins</h4>
     </div>
   );
 };
@@ -73,6 +73,17 @@ const Body = () => {
       <div className="search"> Search</div>
       <div className="res-container">
         <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
       </div>
     </div>
   );
@@ -81,6 +92,7 @@ const AppLayout = () => {
   return (
     <div className="app">
       <Header />
+
       <Body />
     </div>
   );
