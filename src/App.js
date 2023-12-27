@@ -52,7 +52,7 @@ const Header = () => {
     </div>
   );
 };
-const RestaurantCard = () => {
+const RestaurantCard = ({ resName, cuisine }) => {
   return (
     <div className="res-card">
       <img
@@ -60,8 +60,8 @@ const RestaurantCard = () => {
         alt="pic"
         src="https://www.indianveggiedelight.com/wp-content/uploads/2020/04/veg_biryani_1.jpg"
       />
-      <h3> RFC Food</h3>
-      <h4> Biryani, North Indian, Asian</h4>
+      <h3> {resName}</h3>
+      <h4> {cuisine}</h4>
       <h4>4.3 stars </h4>
       <h4> 38 Mins</h4>
     </div>
@@ -72,18 +72,14 @@ const Body = () => {
     <div className="body">
       <div className="search"> Search</div>
       <div className="res-container">
-        <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
+        <RestaurantCard
+          resName="Meghana Food"
+          cuisine="Biryani, North Indian, Asian"
+        />
+        <RestaurantCard
+          resName="RFC"
+          cuisine="Burger, North Indian, Fast Food"
+        />
       </div>
     </div>
   );
