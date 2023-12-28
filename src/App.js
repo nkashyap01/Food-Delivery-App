@@ -30,60 +30,13 @@
 
 import React from "react";
 import ReactDom from "react-dom";
+import Header from "./components/Header.js";
+import Body from "./components/Body.js";
 // const heading = React.createElement("h1", { id: "heading" }, "namste react");
 // console.log(heading);
-const Header = () => {
-  return (
-    <div className="header">
-      <div className="logo-container">
-        <img
-          className="logo"
-          src="https://png.pngtree.com/png-vector/20220708/ourmid/pngtree-fast-food-logo-png-image_5763171.png"
-        />
-      </div>
-      <div className="nav-item">
-        <ul>
-          <li> Home</li>
-          <li> About us</li>
-          <li> Contact</li>
-          <li> Cart</li>
-        </ul>
-      </div>
-    </div>
-  );
-};
-const RestaurantCard = ({ resName, cuisine }) => {
-  return (
-    <div className="res-card">
-      <img
-        className="res-img"
-        alt="pic"
-        src="https://www.indianveggiedelight.com/wp-content/uploads/2020/04/veg_biryani_1.jpg"
-      />
-      <h3> {resName}</h3>
-      <h4> {cuisine}</h4>
-      <h4>4.3 stars </h4>
-      <h4> 38 Mins</h4>
-    </div>
-  );
-};
-const Body = () => {
-  return (
-    <div className="body">
-      <div className="search"> Search</div>
-      <div className="res-container">
-        <RestaurantCard
-          resName="Meghana Food"
-          cuisine="Biryani, North Indian, Asian"
-        />
-        <RestaurantCard
-          resName="RFC"
-          cuisine="Burger, North Indian, Fast Food"
-        />
-      </div>
-    </div>
-  );
-};
+
+
+
 const AppLayout = () => {
   return (
     <div className="app">
