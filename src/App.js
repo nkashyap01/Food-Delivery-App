@@ -42,10 +42,10 @@ const RestaurantCard = (props) => {
       <img
         className="res-img"
         alt="pic"
-        src="https://www.indianveggiedelight.com/wp-content/uploads/2020/04/veg_biryani_1.jpg"
+        src=" https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/e33+cloudinaryImageId"
       />
       <h3>{name}</h3>
-      <h4>{cuisines} </h4>
+      <h4>{cuisines.join(",")} </h4>
       <h4>4.3 stars </h4>
       <h4> 38 Mins</h4>
     </div>
