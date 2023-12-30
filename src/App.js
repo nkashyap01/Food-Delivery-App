@@ -36,13 +36,17 @@ const Header = () => {
 
 const RestaurantCard = (props) => {
   const { name, cuisines } = props.resData.info;
+  // const { resData } = props;
 
   return (
     <div className="res-card">
       <img
         className="res-img"
-        alt="pic"
-        src=" https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/e33+cloudinaryImageId"
+        alt="res-pic"
+        src={
+          "  https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_264,h_288,c_fill/" +
+          props.resData.info.cloudinaryImageId
+        }
       />
       <h3>{name}</h3>
       <h4>{cuisines.join(",")} </h4>
@@ -52,7 +56,7 @@ const RestaurantCard = (props) => {
   );
 };
 
-const resObj = [
+const resList = [
   {
     info: {
       id: "164613",
@@ -1154,9 +1158,10 @@ const Body = () => {
     <div className="body">
       <div className="search"> Search</div>
       <div className="res-container">
-        {resObj.map((res, index) => (
+        {/* {resList.map((res, index) => (
           <RestaurantCard key={index} resData={res} />
-        ))}
+        ))} */}
+        <RestaurantCard resData={resList[2]}></RestaurantCard>
       </div>
     </div>
   );
