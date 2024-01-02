@@ -58,3 +58,7 @@ code {
   display: flex;
   flex-wrap: wrap;
 }
+
+.filter {
+  padding: 10px;
+}
