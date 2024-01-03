@@ -148,7 +148,7 @@ const resList = [
       areaName: "Sector 8",
       costForTwo: "₹600 for two",
       cuisines: ["Burgers", "Biryani", "American", "Snacks", "Fast Food"],
-      avgRating: 4.1,
+      avgRating: 3.1,
       parentId: "547",
       avgRatingString: "4.1",
       totalRatingsString: "1K+",
