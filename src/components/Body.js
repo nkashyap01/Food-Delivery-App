@@ -2,9 +2,10 @@ import RestaurantCard from "./RestaurantCard";
 // import resList from "../utils/mockData";
 import { useState, useEffect } from "react";
 import resList from "../utils/mockData";
+import Shimmer from "./Shimmer.js";
 
 const Body = () => {
-  const [listOfRestaurants, setlistOfRestaurants] = useState(null);
+  const [listOfRestaurants, setlistOfRestaurants] = useState(resList);
 
   useEffect(() => {
     fetchData();
@@ -18,14 +19,19 @@ const Body = () => {
 
     console.log(json);
 
-    console.log(
-      json.data.cards[2].card.card.gridElements.infoWithStyle.restaurants[0]
-    );
-
-    setlistOfRestaurants(
-      json.data.cards[2].card.card.gridElements.infoWithStyle.restaurants
-    );
+    if (json.data.length == 10) {
+      setlistOfRestaurants(
+        json.data.cards[2].card.card.gridElements.infoWithStyle.restaurants
+      );
+    } else {
+      setlistOfRestaurants(
+        json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
+      );
+    }
   };
+  if (listOfRestaurants.length === 0) {
+    return <Shimmer />;
+  }
 
   return (
     listOfRestaurants && (
@@ -45,8 +51,8 @@ const Body = () => {
           </button>
         </div>
         <div className="res-container">
-          {listOfRestaurants.map((obj) => {
-            return <RestaurantCard resData={obj} />;
+          {listOfRestaurants.map((obj, index) => {
+            return <RestaurantCard key={index} resData={obj} />;
           })}
         </div>
       </div>
