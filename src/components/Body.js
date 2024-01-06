@@ -29,34 +29,32 @@ const Body = () => {
       );
     }
   };
-  if (listOfRestaurants.length === 0) {
-    return <Shimmer />;
-  }
 
-  return (
-    listOfRestaurants && (
-      <div className="body">
-        <div className="filter">
-          <button
-            className="filter-btn"
-            onClick={() => {
-              const filterList = listOfRestaurants.filter(
-                (res) => res.info.avgRating > 4
-              );
-              setlistOfRestaurants(filterList);
-            }}
-          >
-            {" "}
-            Top Rated Restaurant
-          </button>
-        </div>
-        <div className="res-container">
-          {listOfRestaurants.map((obj, index) => {
-            return <RestaurantCard key={index} resData={obj} />;
-          })}
-        </div>
+  return;
+  listOfRestaurants.length === 0 ? (
+    <Shimmer />
+  ) : (
+    <div className="body">
+      <div className="filter">
+        <button
+          className="filter-btn"
+          onClick={() => {
+            const filterList = listOfRestaurants.filter(
+              (res) => res.info.avgRating > 4
+            );
+            setlistOfRestaurants(filterList);
+          }}
+        >
+          {" "}
+          Top Rated Restaurant
+        </button>
       </div>
-    )
+      <div className="res-container">
+        {listOfRestaurants.map((obj, index) => {
+          return <RestaurantCard key={index} resData={obj} />;
+        })}
+      </div>
+    </div>
   );
 };
 
