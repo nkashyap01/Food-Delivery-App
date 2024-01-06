@@ -5,7 +5,7 @@ import resList from "../utils/mockData";
 import Shimmer from "./Shimmer.js";
 
 const Body = () => {
-  const [listOfRestaurants, setlistOfRestaurants] = useState(resList);
+  const [listOfRestaurants, setlistOfRestaurants] = useState(null);
 
   useEffect(() => {
     fetchData();
@@ -19,19 +19,22 @@ const Body = () => {
 
     console.log(json);
 
-    if (json.data.length == 10) {
+    if (json.data.cards.length == 10 || json.data.cards.length == 13) {
       setlistOfRestaurants(
         json.data.cards[2].card.card.gridElements.infoWithStyle.restaurants
       );
-    } else {
+    } else if (json.data.cards.length == 12) {
       setlistOfRestaurants(
         json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
+      );
+    } else {
+      setlistOfRestaurants(
+        json.data.cards[3].card.card.gridElements.infoWithStyle.restaurants
       );
     }
   };
 
-  return;
-  listOfRestaurants.length === 0 ? (
+  return listOfRestaurants == null ? (
     <Shimmer />
   ) : (
     <div className="body">
