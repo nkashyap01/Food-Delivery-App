@@ -59,6 +59,10 @@ code {
   flex-wrap: wrap;
 }
 
+.filter-btn {
+  margin: 10px;
+}
+
 .filter {
-  padding: 10px;
+  display: flex;
 }
