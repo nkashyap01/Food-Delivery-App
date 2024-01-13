@@ -89,13 +89,17 @@ const Body = () => {
         </button>
       </div>
       <div className="res-container">
-        {filteredRestaurants.map((obj, index) => {
+        {/* {filteredRestaurants.map((obj, index) => {
           return (
             <Link to={obj.info.id}>
               <RestaurantCard key={index} resData={obj} />
             </Link>
           );
-        })}
+        })} */}
+
+        {filteredRestaurants.map((restaurant) => (
+          <RestaurantCard key={restaurant.info.id} resData={restaurant} />
+        ))}
       </div>
     </div>
   );

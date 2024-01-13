@@ -3,7 +3,6 @@ import Shimmer from "./Shimmer";
 const RestaurantMenu = () => {
   const [resInfo, setResInfo] = useState(null);
 
-  
   useEffect(() => {
     fetchMenu();
   }, []);
@@ -14,16 +13,21 @@ const RestaurantMenu = () => {
     );
     const json = await data.json();
 
-    console.log("deomo");
     console.log(json);
+    setResInfo(json.data);
   };
-
+  const { name, cuisines, costForTwoMessage } =
+    resInfo?.cards[0]?.card?.card?.info || {};
   return resInfo === null ? (
     <Shimmer />
   ) : (
     <div className="Menu">
-      <h1> Name of Restaurants</h1>
-      <h2> Menu</h2>
+      <h1> {name}</h1>
+      <p>
+        {" "}
+        {cuisines.join(" ")}- {costForTwoMessage}
+      </p>
+      <h2>Menu </h2>
       <ul>
         <li> Burger</li>
         <li> Biryani</li>
