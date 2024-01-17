@@ -19,10 +19,7 @@ const Body = () => {
     );
     const json = await data.json();
 
-    console.log(
-      json.data.cards[2].card.card.gridElements.infoWithStyle.restaurants[0]
-        .info.id
-    );
+    console.log(json);
 
     if (json.data.cards.length == 10 || json.data.cards.length == 13) {
       setlistOfRestaurants(
@@ -37,7 +34,8 @@ const Body = () => {
           json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants
       );
       setfilteredRestaurants(
-        json.data.cards[2].card.card.gridElements.infoWithStyle.restaurants
+        json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants ||
+          json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants
       );
     } else {
       setlistOfRestaurants(
@@ -98,7 +96,13 @@ const Body = () => {
         })} */}
 
         {filteredRestaurants.map((restaurant) => (
-          <RestaurantCard key={restaurant.info.id} resData={restaurant} />
+          <Link
+            key={restaurant.info.id}
+            to={"/restaurants/" + restaurant.info.id}
+          >
+            {" "}
+            <RestaurantCard resData={restaurant} />{" "}
+          </Link>
         ))}
       </div>
     </div>

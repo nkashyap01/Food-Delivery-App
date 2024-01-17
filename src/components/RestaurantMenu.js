@@ -7,31 +7,40 @@ const RestaurantMenu = () => {
   useEffect(() => {
     fetchMenu();
   }, []);
-  // 314048
+  //
   const fetchMenu = async () => {
     const data = await fetch(
-      "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=21.1702401&lng=72.83106070000001&&submitAction=ENTER&restaurantId=resId"
+      "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=21.1702401&lng=72.83106070000001&&submitAction=ENTER&restaurantId=" +
+        resId
     );
     const json = await data.json();
 
-    console.log(json);
-    setResInfo(json.data);
+    console.log(json.data);
+
+    setResInfo(json.data.cards);
   };
-  if (resInfo === null) return <Shimmer />;
 
-  const { name, cuisines, costForTwoMessage } =
-    resInfo?.cards[2]?.card?.card?.info;
+  if (resInfo == null) return <Shimmer />;
 
-  const { itemCards } =
-    resInfo?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
-  console.log(itemCards);
+  if (resInfo.length == 6) {
+    var { name, cuisines, costForTwoMessage } = resInfo[2]?.card?.card?.info;
 
+    var { itemCards } =
+      resInfo[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
+  } else {
+    var { name, cuisines, costForTwoMessage } = resInfo[0]?.card?.card?.info;
+
+    var { itemCards } =
+      resInfo[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
+  }
+
+  
   return (
     <div className="Menu">
       <h1> {name}</h1>
       <p>
         {" "}
-        {cuisines.join(" ")}- {costForTwoMessage}
+        {cuisines.join(",")}- {costForTwoMessage}
       </p>
       <h2>Menu </h2>
       <ul>
