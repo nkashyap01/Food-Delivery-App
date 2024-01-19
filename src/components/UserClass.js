@@ -27,6 +27,7 @@ class UserClass extends React.Component {
         <h2> Name:{name}</h2>
         <h3> Bio:{bio}</h3>
         <h4> Contact:7004291827</h4>
+        <h4> Email:nehakashyap1011@gmail.com</h4>
       </div>
     );
   }
