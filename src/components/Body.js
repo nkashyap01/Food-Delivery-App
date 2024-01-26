@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import resList from "../utils/mockData";
 import Shimmer from "./Shimmer.js";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus.js";
 
 const Body = () => {
   const [listOfRestaurants, setlistOfRestaurants] = useState(null);
@@ -18,8 +19,6 @@ const Body = () => {
       " https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.6139391&lng=77.2090212&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
-
-    console.log(json);
 
     if (json.data.cards.length == 10 || json.data.cards.length == 13) {
       setlistOfRestaurants(
@@ -46,6 +45,15 @@ const Body = () => {
       );
     }
   };
+
+  const onlineStatus = useOnlineStatus();
+  if (onlineStatus === false)
+    return (
+      <h1>
+        {" "}
+        Looks like you are offline!!please check your internet connection;
+      </h1>
+    );
 
   return listOfRestaurants == null ? (
     <Shimmer />
