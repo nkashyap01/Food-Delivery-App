@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard  from "./RestaurantCard";
 // import resList from "../utils/mockData";
 import { useState, useEffect } from "react";
 import resList from "../utils/mockData";
@@ -10,6 +10,8 @@ const Body = () => {
   const [listOfRestaurants, setlistOfRestaurants] = useState(null);
   const [searchText, setsearchText] = useState("");
   const [filteredRestaurants, setfilteredRestaurants] = useState([]);
+  console.log(listOfRestaurants);
+  // const RestaurantCardPrompted = withPromptedLabel(RestaurantCard);
   useEffect(() => {
     fetchData();
   }, []);
@@ -19,6 +21,7 @@ const Body = () => {
       " https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.6139391&lng=77.2090212&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
+    console.log(json.data);
 
     if (json.data.cards.length == 10 || json.data.cards.length == 13) {
       setlistOfRestaurants(
@@ -69,7 +72,8 @@ const Body = () => {
               setsearchText(e.target.value);
             }}
           />
-          <button className="px-4 py-1 m-4 bg-green-200 rounded-md"
+          <button
+            className="px-4 py-1 m-4 bg-green-200 rounded-md"
             onClick={() => {
               const filteredRestaurants = listOfRestaurants.filter((res) =>
                 res.info.name.toLowerCase().includes(searchText.toLowerCase())
@@ -82,18 +86,18 @@ const Body = () => {
           </button>
         </div>
         <div className="p-4 m-4 flex items-center">
-        <button
-          className="filter-btn px-4 py-1 bg-gray-200 rounded-md"
-          onClick={() => {
-            const filterList = listOfRestaurants.filter(
-              (res) => res.info.avgRating > 4.2
-            );
-            setfilteredRestaurants(filterList);
-          }}
-        >
-          {" "}
-          Top Rated Restaurant
-        </button>
+          <button
+            className="filter-btn px-4 py-1 bg-gray-200 rounded-md"
+            onClick={() => {
+              const filterList = listOfRestaurants.filter(
+                (res) => res.info.avgRating > 4.2
+              );
+              setfilteredRestaurants(filterList);
+            }}
+          >
+            {" "}
+            Top Rated Restaurant
+          </button>
         </div>
       </div>
       <div className="flex flex-wrap">
@@ -110,8 +114,12 @@ const Body = () => {
             key={restaurant.info.id}
             to={"/restaurants/" + restaurant.info.id}
           >
-            {" "}
-            <RestaurantCard resData={restaurant} />{" "}
+            {/* if the restaurant is promopted then add a promoted label to it */}
+            {/* {restaurant.info.orderabilityCommunication.promoted ? (
+              <RestaurantCardPrompted resData={restaurant} />
+            ) : ( */}
+              <RestaurantCard resData={restaurant} />
+            {/* )} */}
           </Link>
         ))}
       </div>
