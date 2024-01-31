@@ -2,68 +2,88 @@ import Shimmer from "./Shimmer";
 import { useParams, useResolvedPath } from "react-router";
 
 import useRestaurantMenu from "./useRestaurantMenu";
+import RestaurantCategories from "./RestaurantCategories";
+import { IoMdStar } from "react-icons/io";
+import { CDN_URL } from "../utils/constants";
+
 const RestaurantMenu = () => {
   const { resId } = useParams();
 
   const resInfo = useRestaurantMenu(resId);
 
-  console.log(resInfo);
+  if (!resInfo) return null;
 
-  if (resInfo == null) return <Shimmer />;
+  const { name, cuisines, costForTwoMessage, avgRating, cloudinaryImageId } =
+    resInfo.cards[0].card.card.info;
 
-  if (resInfo.length == 6) {
-    var { name, cuisines, costForTwoMessage } =
-      resInfo.cards[2]?.card?.card?.info;
-    var { itemCards } =
-      resInfo.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards[5]?.card
-        ?.card;
-    console.log(
-      resInfo.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards[5]?.card?.card
-    );
-    const categories =
-      resInfo.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards[5]?.card.filter(
-        (c) =>
-          c.card?.card?.["@type"] ===
-          "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+  const { itemCards } =
+    resInfo.cards[2].groupedCard.cardGroupMap.REGULAR.cards[1].card.card;
+
+  const categories =
+    resInfo.cards[2].groupedCard.cardGroupMap.REGULAR.cards.filter((c) => {
+      return (
+        c.card?.["card"]?.["@type"] ===
+        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
       );
-    console.log(categories);
-  } else {
-    var { name, cuisines, costForTwoMessage } =
-      resInfo.cards[0]?.card?.card?.info;
-    var { itemCards } =
-      resInfo.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card
-        ?.card;
-    console.log(
-      resInfo.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card
-    );
-    const categories =
-      resInfo.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card.filter(
-        (c) =>
-          c.card?.card?.["@type"] ===
-          "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
-      );
-    console.log(categories);
-    console.log(categories);
-  }
+    });
 
   return (
     <div className="Menu">
-      <h1> {name}</h1>
+      <div className="flex flex-col">
+        <div className="flex justify-center items-center bg-[#373737] text-white overflow-y-hidden">
+          <div className="flex gap-1 items-center">
+            <img
+              className="h-48 rounded-sm"
+              src={CDN_URL + cloudinaryImageId}
+              alt={name}
+            />
+            <div className="flex flex-col">
+              <h2 className="text-2xl font-bold">{name}</h2>
+              <p className="text-teal-500 font-bold">{cuisines?.join(", ")}</p>
+              <div className="flex gap-3 mt-1">
+                <div>
+                  {avgRating > 4 ? (
+                    <>
+                      {avgRating > 4.5 ? (
+                        <>
+                          {" "}
+                          <p className="bg-green-500 text-white px-1 py-[1px] rounded-sm font-bold text-sm">
+                            {avgRating}
+                            <IoMdStar className="inline -mt-[3px] " />
+                          </p>{" "}
+                        </>
+                      ) : (
+                        <>
+                          {" "}
+                          <p className="bg-yellow-500 text-white px-1 py-[1px] rounded-sm font-bold text-sm">
+                            {avgRating}
+                            <IoMdStar className="inline -mt-[3px]" />
+                          </p>
+                        </>
+                      )}
+                    </>
+                  ) : (
+                    <>
+                      <p className="bg-red-500 text-white px-1 py-[1px] rounded-sm font-bold text-sm">
+                        {avgRating}
+                        <IoMdStar className="inline -mt-[3px]" />
+                      </p>
+                    </>
+                  )}
+                </div>
 
-      <p>
-        {" "}
-        {cuisines.join(",")}- {costForTwoMessage}
-      </p>
-      <h2>Menu </h2>
-      <ul>
-        {itemCards.map((item) => (
-          <li key={item.card.info.id}>
-            {item.card.info.name}-{"RS."}
-            {item.card.info.price / 100 ||
-              item.card.info.defaultPrice / 100}{" "}
-          </li>
-        ))}
-      </ul>
+                <p className="bg-pink-500 text-white px-1 py-[1px] rounded-sm font-bold text-sm">
+                  {costForTwoMessage}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {categories.map((category) => {
+          return <RestaurantCategories data={category.card.card} />;
+        })}
+      </div>
     </div>
   );
 };

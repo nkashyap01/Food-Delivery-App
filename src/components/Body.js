@@ -1,4 +1,4 @@
-import RestaurantCard  from "./RestaurantCard";
+import RestaurantCard from "./RestaurantCard";
 // import resList from "../utils/mockData";
 import { useState, useEffect } from "react";
 import resList from "../utils/mockData";
@@ -17,9 +17,11 @@ const Body = () => {
   }, []);
 
   const fetchData = async () => {
+
     const data = await fetch(
-      " https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.6139391&lng=77.2090212&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.6139391&lng=77.2090212&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
+    
     const json = await data.json();
     console.log(json.data);
 
@@ -118,7 +120,7 @@ const Body = () => {
             {/* {restaurant.info.orderabilityCommunication.promoted ? (
               <RestaurantCardPrompted resData={restaurant} />
             ) : ( */}
-              <RestaurantCard resData={restaurant} />
+            <RestaurantCard resData={restaurant} />
             {/* )} */}
           </Link>
         ))}
