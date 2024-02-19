@@ -10,45 +10,23 @@ const Body = () => {
   const [listOfRestaurants, setlistOfRestaurants] = useState(null);
   const [searchText, setsearchText] = useState("");
   const [filteredRestaurants, setfilteredRestaurants] = useState([]);
-  console.log(listOfRestaurants);
-  // const RestaurantCardPrompted = withPromptedLabel(RestaurantCard);
+
   useEffect(() => {
     fetchData();
   }, []);
 
   const fetchData = async () => {
-
     const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.6139391&lng=77.2090212&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      "https://foodfire.onrender.com/api/restaurants?lat=21.1702401&lng=72.83106070000001&page_type=DESKTOP_WEB_LISTING"
     );
-    
     const json = await data.json();
-    console.log(json.data);
 
-    if (json.data.cards.length == 10 || json.data.cards.length == 13) {
-      setlistOfRestaurants(
-        json.data.cards[2].card.card.gridElements.infoWithStyle.restaurants
-      );
-      setfilteredRestaurants(
-        json.data.cards[2].card.card.gridElements.infoWithStyle.restaurants
-      );
-    } else if (json.data.cards.length == 12) {
-      setlistOfRestaurants(
-        json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants ||
-          json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants
-      );
-      setfilteredRestaurants(
-        json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants ||
-          json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants
-      );
-    } else {
-      setlistOfRestaurants(
-        json.data.cards[3].card.card.gridElements.infoWithStyle.restaurants
-      );
-      setfilteredRestaurants(
-        json.data.cards[2].card.card.gridElements.infoWithStyle.restaurants
-      );
-    }
+    setlistOfRestaurants(
+      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+    setfilteredRestaurants(
+      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
   };
 
   const onlineStatus = useOnlineStatus();

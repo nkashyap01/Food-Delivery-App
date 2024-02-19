@@ -5,19 +5,18 @@ import useRestaurantMenu from "./useRestaurantMenu";
 import RestaurantCategories from "./RestaurantCategories";
 import { IoMdStar } from "react-icons/io";
 import { CDN_URL } from "../utils/constants";
+import { useState } from "react";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
 
   const resInfo = useRestaurantMenu(resId);
+  const[showIndex, setshowIndex]=useState((0));
 
   if (!resInfo) return null;
 
   const { name, cuisines, costForTwoMessage, avgRating, cloudinaryImageId } =
     resInfo.cards[0].card.card.info;
-
-  const { itemCards } =
-    resInfo.cards[2].groupedCard.cardGroupMap.REGULAR.cards[1].card.card;
 
   const categories =
     resInfo.cards[2].groupedCard.cardGroupMap.REGULAR.cards.filter((c) => {
@@ -26,6 +25,8 @@ const RestaurantMenu = () => {
         "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
       );
     });
+
+  console.log(categories);
 
   return (
     <div className="Menu">
@@ -80,8 +81,14 @@ const RestaurantMenu = () => {
           </div>
         </div>
 
-        {categories.map((category) => {
-          return <RestaurantCategories data={category.card.card} />;
+        {categories.map((category,index) => {
+          return <RestaurantCategories 
+          key={category?.card?.card?.title}
+          data={category.card.card} 
+          showItems={index===showIndex ? true:false}
+          setshowIndex={()=>setshowIndex(index)}
+          
+          />;
         })}
       </div>
     </div>

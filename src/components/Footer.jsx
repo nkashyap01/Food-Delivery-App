@@ -1,11 +1,14 @@
 import React from "react";
+import { IoIosStar } from "react-icons/io";
+
+// npm i react-icons
+// import
 
 const Footer = () => {
   return (
     <div>
-      <p >
-         Enjoy the best food delivery experience with us. We are here to
-       serve you! 
+      <p>
+        <IoIosStar className="text-yellow-600 text-2xl " />
       </p>
     </div>
   );
