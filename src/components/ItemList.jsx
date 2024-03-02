@@ -3,6 +3,8 @@ import { CDN_URL } from "../utils/constants";
 import { FaRupeeSign } from "react-icons/fa";
 
 const ItemList = ({ items }) => {
+  
+
   return (
     <div className="flex justify-between items-center flex-col">
       {items.map((item) => (

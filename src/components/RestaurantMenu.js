@@ -11,7 +11,7 @@ const RestaurantMenu = () => {
   const { resId } = useParams();
 
   const resInfo = useRestaurantMenu(resId);
-  const[showIndex, setshowIndex]=useState((0));
+  const[showIndex, setshowIndex]=useState(null);
 
   if (!resInfo) return null;
 
@@ -80,16 +80,18 @@ const RestaurantMenu = () => {
             </div>
           </div>
         </div>
-
-        {categories.map((category,index) => {
-          return <RestaurantCategories 
+    
+          {/* categories accordions */}
+        {categories.map((category,index) => (
+          // controlled Component
+           <RestaurantCategories 
           key={category?.card?.card?.title}
           data={category.card.card} 
           showItems={index===showIndex ? true:false}
           setshowIndex={()=>setshowIndex(index)}
           
-          />;
-        })}
+          />
+        ))}
       </div>
     </div>
   );
