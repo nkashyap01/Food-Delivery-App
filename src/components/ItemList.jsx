@@ -1,8 +1,16 @@
 import React, { useState } from "react";
 import { CDN_URL } from "../utils/constants";
 import { FaRupeeSign } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { addItem } from "../utils/cartSlice";
 
 const ItemList = ({ items }) => {
+  const dispatch = useDispatch();
+
+  const handleAddItems = (item) =>{
+    dispatch(addItem("item"));
+    console.log(item);
+  }
   
 
   return (
@@ -30,7 +38,7 @@ const ItemList = ({ items }) => {
 
           <div className="relative">
             <div className="absolute bottom-0 left-10">
-              <button className="bg-white text-green-500 text-sm font-bold rounded-sm px-2 py-[1px] shadow-md">
+              <button className="bg-white text-green-500 text-sm font-bold rounded-sm px-2 py-[1px] shadow-md"  onClick={() => handleAddItems(item)}>
                 Add +
               </button>
             </div>
