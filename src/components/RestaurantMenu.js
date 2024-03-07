@@ -26,7 +26,7 @@ const RestaurantMenu = () => {
       );
     });
 
-  console.log(categories);
+  // console.log(categories);
 
   return (
     <div className="Menu">

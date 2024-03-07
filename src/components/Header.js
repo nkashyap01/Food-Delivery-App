@@ -28,13 +28,16 @@ const Header = () => {
           <li className="px-4">
             <Link to="/Grocery"> Grocery </Link>
           </li>
-          <li className="px-4 font-bold"> Cart-({cartItems.length})</li>
+          <li className="px-4 font-bold"> 
+         
+          <Link to="/Cart"> Cart-({cartItems.length}) </Link>
+          </li>
 
           <button
             className="login"
             onClick={() => {
               btnName === "logIn" ? setbtnName("logOut") : setbtnName("logIn");
-              console.log(btnName);
+              // console.log(btnName);
             }}
           >
             {btnName}
